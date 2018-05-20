@@ -16,10 +16,20 @@ public class ColorUtil {
     }
 
     public List<Color> getTopColors(int count) {
-        return new ArrayList<>();   //TODO: implement method
+        List<Color> uni = getUniqueColorsWithScore();
+        List<Color> uniSorted = allColors.stream().sorted((c1,c2) -> (
+
+                ) ).collect(Collectors.toList());
+        return uniSorted.subList(0,count);
     }
 
     public int getUniqueColorCount() {
-        return 0;   //TODO: implement method
+        getUniqueColorsWithScore().length;
+    }
+
+    public HashMap<Color,Integer> getUniqueColorsWithScore(){
+        Map counted = new HashMap<Color,Integer>();
+
+
     }
 }

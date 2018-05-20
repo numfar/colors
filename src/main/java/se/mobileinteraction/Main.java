@@ -8,22 +8,24 @@ import se.mobileinteraction.image.ImageUtil;
 
 import java.util.List;
 
+
 public class Main {
 
     public static void main(String[] args) {
+
 
         if (args.length == 0) {
             System.out.println("Please provide a path as the first argument to this program");
             return;
         }
 
-        int tolerance = 0;  //TODO: Make program accept tolerance value as second argument (0-255)
+        int tolerance = Integer.parseInt(args[0]);
 
         FileUtil fileUtil = new FileUtil();
         ImageUtil imageUtil = new ImageUtil();
         ColorUtil colorUtil = new ColorUtil();
 
-        List<String> files = fileUtil.getFilesInDirectory(args[0]);
+        List<String> files = fileUtil.getImageFilesInDirectory(args[0]);
 
         for (String file : files) {
             Image img = imageUtil.getImage(file);

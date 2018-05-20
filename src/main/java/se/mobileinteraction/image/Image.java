@@ -55,11 +55,13 @@ public class Image {
                 data.getPixel(x, y, pixel);
                 Color c = new Color(pixel);
                 colors.add(c);
-                //TODO: Get all *unique* colors based on tolerance
+
+                Map<String,Color> sameColors = new HashMap<String,Color>();
+                
             }
         }
 
-        return colors;
+        return sameColors.values();
     }
 
 
