@@ -20,8 +20,7 @@ public class Main {
         }
 
         try {
-            //int tolerance = Integer.parseInt(args[0]);
-            int tolerance = 10;
+            int tolerance = Integer.parseInt(args[0]);
             FileUtil fileUtil = new FileUtil();
             ImageUtil imageUtil = new ImageUtil();
             ColorUtil colorUtil = new ColorUtil();
@@ -44,7 +43,7 @@ public class Main {
             }
         }
         catch (Exception e){
-            
+
         }
 
     }
