@@ -24,8 +24,7 @@ public class FileUtil {
             if (f.isFile()) {
                 System.out.println("File " + f.getName());
 
-                Image image = ImageIO.read(f);
-                if (image == null) {
+                if (ImageIO.read(f) == null) {
                     throw new IOException("The file"+f.getName()+"could not be opened , it is not an image");
                 }
 

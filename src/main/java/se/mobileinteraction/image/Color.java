@@ -1,4 +1,5 @@
 package se.mobileinteraction.image;
+import java.lang.*;
 
 public class Color {
 
@@ -29,6 +30,31 @@ public class Color {
         return name;
     }
 
+    public boolean isSame(Color c,int tolerance){
+        int totalDiff = Math.abs(red - c.red) + Math.abs(green - c.green) + Math.abs(blue - c.blue);
+
+        if (totalDiff > tolerance){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    @Override
+    public boolean equals(Object o){
+        Color c = (Color)o;
+
+        if(o == null){
+            return false;
+        }
+        if (!(c.green == this.green && c.blue == this.blue && c.red == this.red) ){
+            return false;
+        }
+
+        return true;
+    }
+
     public int getPixelCount() {
         return pixelCount;
     }
@@ -44,4 +70,5 @@ public class Color {
     public void setFileCount(int fileCount) {
         this.fileCount = fileCount;
     }
+
 }

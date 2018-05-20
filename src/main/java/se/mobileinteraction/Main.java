@@ -19,27 +19,32 @@ public class Main {
             return;
         }
 
-        int tolerance = Integer.parseInt(args[0]);
+        try {
+            //int tolerance = Integer.parseInt(args[0]);
+            int tolerance = 10;
+            FileUtil fileUtil = new FileUtil();
+            ImageUtil imageUtil = new ImageUtil();
+            ColorUtil colorUtil = new ColorUtil();
 
-        FileUtil fileUtil = new FileUtil();
-        ImageUtil imageUtil = new ImageUtil();
-        ColorUtil colorUtil = new ColorUtil();
+            List<String> files = fileUtil.getImageFilesInDirectory(args[0]);
 
-        List<String> files = fileUtil.getImageFilesInDirectory(args[0]);
+            for (String file : files) {
+                Image img = imageUtil.getImage(file);
+                List<Color> colors = img.getColors(tolerance);
+                colorUtil.addColors(colors);
+            }
 
-        for (String file : files) {
-            Image img = imageUtil.getImage(file);
-            List<Color> colors = img.getColors(tolerance);
-            colorUtil.addColors(colors);
+            System.out.println("--------------------------------");
+            System.out.println("Total files: " + files.size());
+            System.out.println("Total unique colors: " + colorUtil.getUniqueColorCount());
+
+            System.out.println("Top three colors:");
+            for (Color color : colorUtil.getTopColors(3)) {
+                System.out.println(color.getName() + ": in " + color.getFileCount() + " files, total of " + color.getPixelCount() + " pixels");
+            }
         }
-
-        System.out.println("--------------------------------");
-        System.out.println("Total files: " + files.size());
-        System.out.println("Total unique colors: " + colorUtil.getUniqueColorCount());
-
-        System.out.println("Top three colors:");
-        for (Color color : colorUtil.getTopColors(3)) {
-            System.out.println(color.getName() + ": in " + color.getFileCount() + " files, total of " + color.getPixelCount() + " pixels");
+        catch (Exception e){
+            
         }
 
     }

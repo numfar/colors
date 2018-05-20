@@ -38,6 +38,7 @@ public class Image {
         load();
 
         ArrayList<Color> colors = new ArrayList<>();
+        List<Color> sameColors = new ArrayList<Color>();
 
         if (img == null) {
             System.out.println("Failed to load image: " + file);
@@ -56,13 +57,28 @@ public class Image {
                 Color c = new Color(pixel);
                 colors.add(c);
 
-                Map<String,Color> sameColors = new HashMap<String,Color>();
-                
+                for(Color c1: colors){
+
+                    boolean colorNotAdded = containsColor(c1,sameColors,tolerance);
+
+                    if(colorNotAdded){
+                        sameColors.add(c1);
+                    }
+                }
+
             }
         }
 
-        return sameColors.values();
+        return sameColors;
     }
 
+    private boolean containsColor(Color curr, List<Color> same,int tol){
+        for(Color c2 : same){
+            if(c2.isSame(curr,tol)){
+                return false;
+            }
+        }
+        return true;
+    }
 
 }
